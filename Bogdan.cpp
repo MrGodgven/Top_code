@@ -3,16 +3,12 @@
 using namespace std;
 
 int main() {
-	srand(time(NULL));
-  const int size = 10;
-  int x[10];
+	int sum = 0;
+	int mult = 1;
+	const int size1 = 5, size2 = 3;
 
-  generate(x, size, 1, 10);
+	int x[size1]{ 1, 2, 3, 4, 5 };
+	int y[size2]{ 2, 3, 4 };
 
-  print(x, size);
-
-  reverse(x, size);
-
-  print(x, size);
-
+	cout << *isin_arr(x, size1, y, size2);
 }
