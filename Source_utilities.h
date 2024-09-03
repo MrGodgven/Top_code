@@ -1,6 +1,9 @@
 #pragma once
 #include <iostream>
+#include <vector>
 using namespace std;
+typedef vector <char> vector_char;
+typedef vector <int> vector_int;
 
 void generate(int arr[],
   const int size,
@@ -138,9 +141,10 @@ int numcheck(const int arr1[], const int* size, int choose) {
 
 }
 
-void relocate(int*& arr, size_t size, size_t new_size) {
+void relocate(int* arr, size_t size, size_t new_size) {
   int* new_arr = new int[new_size];
   const size_t min_size = min(size, new_size);
+
   for (size_t i = 0; i < min_size; i++) {
     new_arr[i] = arr[i];
   }
@@ -154,4 +158,77 @@ int* isin_arr(int* arr1, size_t size1, int* arr2, size_t size2) {
     if (isin(arr1, size1, arr2[i])) return arr1 + i + 1;
   }
   return nullptr;
+}
+
+void pop(int* arr, size_t size, size_t index) {
+  for (size_t i = index; i < size - 1; i++) {
+    arr[i] = arr[i + 1];
+  }
+}
+
+int st_lenght(const char *stroke) {
+  int x = 0;
+  for (size_t i = 0; stroke[i] != '\0'; i++) x++;
+  return x;
+}
+
+char * mystrchr(char * str, char s) {
+  for (size_t i = 0; str[i] != '\0'; i++) {
+    if (str[i] == s) {
+      return str + i;
+      break;
+    }
+  }
+  return nullptr;
+}
+
+void print_char_vector(vector_char& vect) {
+  for (size_t i = 0; i < vect.size(); i++) {
+    cout << vect.at(i);
+  }
+}
+
+void fill_int_vector(vector_int& vect) {
+  int x; cin >> x;
+  for (size_t i = 0; i < x; i++) {
+    int y = 0; cin >> y;
+    vect.push_back(y);
+  }
+}
+
+void print_int_vector(vector_int& vect) {
+  for (auto& i : vect) {
+    cout << i << " ";
+  }
+}
+
+void reDraw(char mass[3][3]) {
+  system("CLS");
+  for (size_t i = 0; i < 3; i++) {
+    for (size_t j = 0; j < 3; j++) {
+      cout << mass[i][j] << " ";
+    }
+    cout << endl;
+  }
+}
+
+void restart(char mass[3][3]) {
+  system("CLS");
+  for (size_t i = 0; i < 3; i++) {
+    for (size_t j = 0; j < 3; j++) {
+      mass[i][j] = '#';
+    }
+    cout << endl;
+  }
+  reDraw(mass);
+}
+
+bool isfilled(char mass[3][3]) {
+  for (size_t i = 0; i < 3; i++) {
+    for (size_t j = 0; j < 3; j++) {
+      if (mass[i][j] == '#') return false;
+    }
+    cout << endl;
+  }
+  return true;
 }
